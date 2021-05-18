@@ -11,63 +11,52 @@ jobs:
     timeout-minutes: 30
     steps:
     - uses: actions/checkout@v2
-    # - name: Setup iOS Certs
-    #   uses: Apple-Actions/import-codesign-certs@v1
-    #   with:
-    #     p12-file-base64: ${{ secrets.CERTIFICATES_FILE_BASE64 }}
-    #     p12-password: ${{ secrets.CERTIFICATES_PASSWORD }}
-    # - name: Install Provision Profiles
-    #   run: |
-    #     mkdir -p "/Users/runner/Library/MobileDevice/Provisioning Profiles"
-    # - name: Some name
-    #   uses: RollyPeres/base64-to-path@v1
-    #   with:
-    #     filePath: /Users/runner/Library/MobileDevice/Provisioning Profiles/86ce4d81-fd7e-46b2-ae6a-3092b4af6cd7.mobileprovision
-    #     encodedString: ${{ secrets.PROVISIONING_PROFILE }}
-    - name: Setup iOS Provision Profiles
+    - name: Setup iOS Certs
+      uses: Apple-Actions/import-codesign-certs@v1
+      with:
+        p12-file-base64: ${{ secrets.CERTIFICATES_FILE_BASE64 }}
+        p12-password: ${{ secrets.CERTIFICATES_PASSWORD }}
+    - name: Install Provision Profiles
+      run: |
+        mkdir -p "/Users/runner/Library/MobileDevice/Provisioning Profiles"
+    - name: Some name
+      uses: RollyPeres/base64-to-path@v1
+      with:
+        filePath: /Users/runner/Library/MobileDevice/Provisioning Profiles/86ce4d81-fd7e-46b2-ae6a-3092b4af6cd7.mobileprovision
+        encodedString: ${{ secrets.PROVISIONING_PROFILE }}
+    - name: Setup flutter app config
       uses: davidSchuppa/base64Secret-toFile-action@v1
       with:
-        secret: ${{ secrets.PROVISIONING_PROFILE }}
-        filename: dd767cf3-fece-48d3-b19d-1b1dab7b93da.mobileprovision
-        destination-path: /Users/runner/Library/MobileDevice/Provisioning Profiles
-    # - name: Setup flutter app config
-    #   uses: davidSchuppa/base64Secret-toFile-action@v1
-    #   with:
-    #     secret: ${{ secrets.APP_FLUTTER_CONFIG }}
-    #     filename: app_config_prod.json
-    #     destination-path: ${{ github.workspace }}/config
-    # - name: Setup ios app config
-    #   uses: davidSchuppa/base64Secret-toFile-action@v1
-    #   with:
-    #     secret: ${{ secrets.APP_IOS_CONFIG }}
-    #     filename: app_config_prod.json
-    #     destination-path: ${{ github.workspace }}/ios/Runner/config
-    # - name: Setup android app config
-    #   uses: davidSchuppa/base64Secret-toFile-action@v1
-    #   with:
-    #     secret: ${{ secrets.APP_ANDROID_CONFIG }}
-    #     filename: config-properties.gradle
-    #     destination-path: ${{ github.workspace }}/android/app
-    # - uses: actions/setup-java@v1
-    #   with:
-    #     java-version: '12.x'
-    # - uses: subosito/flutter-action@v1
-    #   with:
-    #       channel: 'stable'
-    # - run: flutter pub get
-    # - name: Install Dependencies
-    #   run: |
-    #     cd ios
-    #     pod install
-    #   shell: bash
-    # - run: flutter build ipa --release
-    # - name: Upload XCArchive
-    #   uses: actions/upload-artifact@v1
-    #   with:
-    #     name: Runner.xcarchive
-    #     path: build/ios/archive/
+        secret: ${{ secrets.APP_FLUTTER_CONFIG }}
+        filename: app_config_prod.json
+        destination-path: ${{ github.workspace }}/config
+    - name: Setup ios app config
+      uses: davidSchuppa/base64Secret-toFile-action@v1
+      with:
+        secret: ${{ secrets.APP_IOS_CONFIG }}
+        filename: app_config_prod.json
+        destination-path: ${{ github.workspace }}/ios/Runner/config
+    - name: Setup android app config
+      uses: davidSchuppa/base64Secret-toFile-action@v1
+      with:
+        secret: ${{ secrets.APP_ANDROID_CONFIG }}
+        filename: config-properties.gradle
+        destination-path: ${{ github.workspace }}/android/app
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '12.x'
+    - uses: subosito/flutter-action@v1
+      with:
+          channel: 'stable'
+    - run: flutter pub get
+    - name: Install Dependencies
+      run: |
+        cd ios
+        pod install
+      shell: bash
+    - run: flutter build ipa --release
     - name: Upload XCArchive
       uses: actions/upload-artifact@v1
       with:
-        name: dd767cf3-fece-48d3-b19d-1b1dab7b93da.mobileprovision
-        path: /Users/runner/Library/MobileDevice/Provisioning Profiles
+        name: Runner.xcarchive
+        path: build/ios/archive/
