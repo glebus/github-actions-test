@@ -29,7 +29,7 @@ jobs:
       with:
         secret: ${{ secrets.PROVISIONING_PROFILE }}
         filename: dd767cf3-fece-48d3-b19d-1b1dab7b93da.mobileprovision
-        destination-path: ~/Library/MobileDevice/Provisioning Profiles
+        destination-path: /Users/runner/Library/MobileDevice/Provisioning Profiles
     # - name: Setup flutter app config
     #   uses: davidSchuppa/base64Secret-toFile-action@v1
     #   with:
