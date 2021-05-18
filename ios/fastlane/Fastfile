@@ -1,0 +1,42 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Description of what the lane does"
+  lane :archive do
+    # create_keychain(
+    #   name: "GA",
+    #   password: "15889",
+    #   default_keychain: true,
+    #   unlock: true,
+    #   timeout: 3600,
+    #   lock_when_sleeps: false
+    # )
+    # import_certificate(certificate_path: "/Users/glebus/Desktop/Calclist/AppStoreCertificates.p12", keychain_name: "GA", keychain_password: "15889")
+    # install_provisioning_profile(path: "/Users/glebus/Desktop/Calclist/AppStoreProvision.mobileprovision")
+    build_app(scheme: "Runner",
+            workspace: "Runner.xcworkspace",
+            skip_codesigning: true,
+            skip_package_ipa: true)
+    FileUtils.mkdir_p("archives")
+    backup_xcarchive(
+      destination: FileUtils.pwd + "/../artifacts", # Where the backup should be created
+      zip: true, # Enable compression of the archive. Defaults to `true`.
+      versioned: true # Create a versioned (date and app version) subfolder where to put the archive
+    )
+  end
+end

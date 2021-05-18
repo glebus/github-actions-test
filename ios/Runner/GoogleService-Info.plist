@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>94205606916-5n9tqgfbfp4s95b3kulkqfdujc4n3b9s.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.94205606916-5n9tqgfbfp4s95b3kulkqfdujc4n3b9s</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>94205606916-c6jm1amj4kfhbsofphtr5u7u6sm4pdm9.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB3nfPF8hTKCRFK37_R490PSLHbtyiMXIo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>94205606916</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.domus-studio.calclist</string>
+	<key>PROJECT_ID</key>
+	<string>calclist-7e6b9</string>
+	<key>STORAGE_BUCKET</key>
+	<string>calclist-7e6b9.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:94205606916:ios:c5749a64c9ac76c5740951</string>
+</dict>
+</plist>

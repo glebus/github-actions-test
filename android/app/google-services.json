@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "94205606916",
+    "project_id": "calclist-7e6b9",
+    "storage_bucket": "calclist-7e6b9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:94205606916:android:76116de8906144d3740951",
+        "android_client_info": {
+          "package_name": "com.domus_studio.calclist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "94205606916-c6jm1amj4kfhbsofphtr5u7u6sm4pdm9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.domus_studio.calclist",
+            "certificate_hash": "355e389b5b77bf7333fb7aaf7a8e7827a6a1cd96"
+          }
+        },
+        {
+          "client_id": "94205606916-d2cn3qavad7vfpidfpcr68rvmih2402u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9YPhg3atLJmagTHDWZak1THqiA3zP9Cg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "94205606916-d2cn3qavad7vfpidfpcr68rvmih2402u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
