@@ -23,9 +23,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_new_relic_agent:
-    git:
-      url: git@github.com:wmgdsp/flutter-newrelic-agent.git
 
 dev_dependencies:
   flutter_test:

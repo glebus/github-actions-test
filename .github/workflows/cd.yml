@@ -11,56 +11,41 @@ jobs:
     timeout-minutes: 30
     steps:
     - uses: actions/checkout@v2
-    # - name: Setup iOS Certs
-    #   uses: Apple-Actions/import-codesign-certs@v1
-    #   with:
-    #     p12-file-base64: ${{ secrets.CERTIFICATES_FILE_BASE64 }}
-    #     p12-password: ${{ secrets.CERTIFICATES_PASSWORD }}
-    # - name: Create Provision Profiles directory
-    #   run: |
-    #     mkdir -p "/Users/runner/Library/MobileDevice/Provisioning Profiles"
-    # - name: Setup Provision Profile
-    #   uses: RollyPeres/base64-to-path@v1
-    #   with:
-    #     filePath: /Users/runner/Library/MobileDevice/Provisioning Profiles/86ce4d81-fd7e-46b2-ae6a-3092b4af6cd7.mobileprovision
-    #     encodedString: ${{ secrets.PROVISIONING_PROFILE }}
-    # - name: Setup flutter app config
-    #   uses: davidSchuppa/base64Secret-toFile-action@v1
-    #   with:
-    #     secret: ${{ secrets.APP_FLUTTER_CONFIG }}
-    #     filename: app_config_prod.json
-    #     destination-path: ${{ github.workspace }}/config
-    # - name: Setup ios app config
-    #   uses: davidSchuppa/base64Secret-toFile-action@v1
-    #   with:
-    #     secret: ${{ secrets.APP_IOS_CONFIG }}
-    #     filename: app_config_prod.json
-    #     destination-path: ${{ github.workspace }}/ios/Runner/config
-    # - name: Setup android app config
-    #   uses: davidSchuppa/base64Secret-toFile-action@v1
-    #   with:
-    #     secret: ${{ secrets.APP_ANDROID_CONFIG }}
-    #     filename: config-properties.gradle
-    #     destination-path: ${{ github.workspace }}/android/app
+    - name: Setup iOS Certs
+      uses: Apple-Actions/import-codesign-certs@v1
+      with:
+        p12-file-base64: ${{ secrets.CERTIFICATES_FILE_BASE64 }}
+        p12-password: ${{ secrets.CERTIFICATES_PASSWORD }}
+    - name: Create Provision Profiles directory
+      run: |
+        mkdir -p "/Users/runner/Library/MobileDevice/Provisioning Profiles"
+    - name: Setup Provision Profile
+      uses: RollyPeres/base64-to-path@v1
+      with:
+        filePath: /Users/runner/Library/MobileDevice/Provisioning Profiles/86ce4d81-fd7e-46b2-ae6a-3092b4af6cd7.mobileprovision
+        encodedString: ${{ secrets.PROVISIONING_PROFILE }}
     - uses: actions/setup-java@v1
       with:
         java-version: '12.x'
     - uses: subosito/flutter-action@v1
       with:
           channel: 'stable'
-    - uses: shimataro/ssh-key-action@v2
-      with:
-        key: ${{ secrets.NEWRELIC_REPO_SSH_KEY }}
-        known_hosts: unnecessary
     - run: flutter pub get
-    # - name: Install Dependencies
-    #   run: |
-    #     cd ios
-    #     pod install
-    #   shell: bash
-    # - run: flutter build ipa --release
+    - name: Install Dependencies
+      run: |
+        cd ios
+        pod install
+      shell: bash
+    - run: flutter build ipa --release --export-options-plist=ExportOptions.plist
     # - name: Upload XCArchive
     #   uses: actions/upload-artifact@v1
     #   with:
     #     name: Runner.xcarchive
     #     path: build/ios/archive/
+    - uses: shallwefootball/s3-upload-action@master
+        with:
+          aws_key_id: ${{ secrets.AWS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws_bucket: wmg-amp-mobile-api-staging
+          source_dir: build/ios/ipa/calclist.ipa
+          destination_dir: builds/v4-10/
