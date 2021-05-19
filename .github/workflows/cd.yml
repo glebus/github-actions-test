@@ -42,10 +42,14 @@ jobs:
     #   with:
     #     name: Runner.xcarchive
     #     path: build/ios/archive/
+    - name: Move ipa to the folder
+      run: |
+        mkdir -p build/ios/ipa/binary
+        mv build/ios/ipa/calclist.ipa build/ios/ipa/binary/calclist.ipa
     - uses: shallwefootball/s3-upload-action@master
       with:
         aws_key_id: ${{ secrets.AWS_KEY_ID }}
         aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
         aws_bucket: wmg-amp-mobile-api-staging
-        source_dir: build/ios/ipa/calclist.ipa
+        source_dir: build/ios/ipa/binary
         destination_dir: builds/v4-10/
