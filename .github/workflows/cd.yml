@@ -42,12 +42,12 @@ jobs:
     #     secret: ${{ secrets.APP_ANDROID_CONFIG }}
     #     filename: config-properties.gradle
     #     destination-path: ${{ github.workspace }}/android/app
-    # - uses: actions/setup-java@v1
-    #   with:
-    #     java-version: '12.x'
-    # - uses: subosito/flutter-action@v1
-    #   with:
-    #       channel: 'stable'
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '12.x'
+    - uses: subosito/flutter-action@v1
+      with:
+          channel: 'stable'
     - uses: shimataro/ssh-key-action@v2
       with:
         key: ${{ secrets.NEWRELIC_REPO_SSH_KEY }}
