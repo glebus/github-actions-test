@@ -49,6 +49,7 @@ jobs:
     - name: Upload XCArchive
       uses: actions/upload-artifact@v1
       with:
+        name: Runner.xcarchive
         path: ios/archives
     # - name: Prepare IPA
     #   run: |

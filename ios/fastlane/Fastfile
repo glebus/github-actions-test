@@ -32,11 +32,11 @@ platform :ios do
             workspace: "Runner.xcworkspace",
             export_method: "app-store")
     FileUtils.mkdir_p("archives")
-    sh("ls")
     backup_xcarchive(
       destination: FileUtils.pwd + "/archives", # Where the backup should be created
       zip: true, # Enable compression of the archive. Defaults to `true`.
       versioned: true # Create a versioned (date and app version) subfolder where to put the archive
     )
+    sh("ls archives")
   end
 end
