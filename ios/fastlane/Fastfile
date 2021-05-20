@@ -34,7 +34,7 @@ platform :ios do
     FileUtils.mkdir_p("archives")
     sh("ls")
     backup_xcarchive(
-      destination: "ios/archives", # Where the backup should be created
+      destination: "archives", # Where the backup should be created
       zip: true, # Enable compression of the archive. Defaults to `true`.
       versioned: true # Create a versioned (date and app version) subfolder where to put the archive
     )
