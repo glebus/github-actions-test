@@ -50,7 +50,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: Runner.xcarchive
-        path: ios/archives
+        path: ios/fastlane/archives
     # - name: Prepare IPA
     #   run: |
     #     mv build/ios/ipa/calclist.ipa build/ios/ipa/WMG_AMP_Enterprise.ipa

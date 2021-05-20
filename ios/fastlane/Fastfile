@@ -37,6 +37,5 @@ platform :ios do
       zip: true, # Enable compression of the archive. Defaults to `true`.
       versioned: true # Create a versioned (date and app version) subfolder where to put the archive
     )
-    sh("ls archives")
   end
 end
