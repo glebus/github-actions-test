@@ -7,7 +7,7 @@ on:
 jobs:
   build_ios:
     name: Build Flutter (iOS)
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
     - uses: actions/checkout@v2
@@ -16,9 +16,14 @@ jobs:
     - name: Get tag
       id: get-tag
       uses: dawidd6/action-get-tag@v1
+    - uses: jungwinter/split@v1
+        id: split
+        with:
+          msg: ${{steps.get-tag.outputs.tag}}
+          seperator: "-"
     - name: just echo a message
       run: |
-        echo ${{steps.get-tag.outputs.tag}}
+        echo ${{ steps.split.outputs._2 }}
 #     - name: Setup iOS Certs
 #       uses: Apple-Actions/import-codesign-certs@v1
 #       with:
