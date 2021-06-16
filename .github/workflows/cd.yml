@@ -17,10 +17,10 @@ jobs:
       id: get-tag
       uses: dawidd6/action-get-tag@v1
     - uses: jungwinter/split@v1
-        id: split
-        with:
-          msg: ${{steps.get-tag.outputs.tag}}
-          seperator: "-"
+      id: split
+      with:
+        msg: ${{steps.get-tag.outputs.tag}}
+        seperator: "-"
     - name: just echo a message
       run: |
         echo ${{ steps.split.outputs._2 }}
